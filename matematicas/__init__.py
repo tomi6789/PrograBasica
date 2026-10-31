@@ -1,0 +1,4 @@
+from matematicas.aritmetica import operaciones as aritmetica_operaciones
+from matematicas.estadistica import operaciones as estadistica_operaciones
+
+operaciones = aritmetica_operaciones | estadistica_operaciones

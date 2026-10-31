@@ -1,0 +1,14 @@
+{
+    "operaciones": [
+        {
+            "Operacion": "suma",
+            "A": 2,
+            "B": 2
+        },
+        {
+            "Operacion": "resta",
+            "A": 8,
+            "B": 2
+        }
+    ]
+}
