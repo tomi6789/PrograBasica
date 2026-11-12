@@ -1,116 +1,54 @@
-""" import re
+import matplotlib.pyplot as plt
+import numpy as np
 
-email = "rt-nnoc@gmail.com"
-pattern = r"^([\w.-]+)@([\w.-]+\.[a-zA-Z]{2,})$"
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8, 8))
 
-busqueda = re.search(pattern, email)
-usuario = busqueda.group(1)
-dominio = busqueda.group(2)
+xs = [0,1,2,3,4,5,6,7,8,9]
+ys = [0,1,2,3,4,5,6,7,8,9]
+ax1.plot(xs, ys, label="Funcion lineal $y=x$")
 
-print(usuario, dominio) """
+xs2 = range(-10, 11)
+ys2 = [x**2 for x in xs2]
+ax2.plot(xs2, ys2, marker="o", linestyle="-", label="step = 1")
 
-# import requests, pandas, json
+xs3 = np.arange(-10, 10, 0.1)
+ys3 = [x**2 for x in xs3]
+ax2.plot(xs3, ys3, marker="+", linestyle="-", label="step = 0.1")
 
-# url = "https://fake.jsonmockapi.com/products?length=1"
+xs4 = np.linspace(-10, 10, 1000)
+ys4 = xs4 ** 2
+ax2.plot(xs4, ys4, linestyle="-", label="continua")
 
-# with requests.get(url) as response:
-#     data = response.json()
+xs5 = xs4
+ys5 = np.sin(xs4)
+ax1.plot(xs5, ys5, linestyle="-", label="Función de seno $y=\\sin{x}$")
 
-#     print(data)
+ax1.plot(xs5, [1] * 1000, linestyle="-")
+ax1.plot(xs5, [-1] * 1000, linestyle="-")
 
-#     dataframe = pandas.json_normalize(data)
+ax1.set_title("Funciones varias")
+ax1.set_xlabel("Eje X")
+ax1.set_ylabel("Eje Y")
+ax1.legend()
 
-#     print(dataframe["shipping.estimatedDeliveryDays.minimum"])
-#     print(dataframe[["productName", "description", "shipping.estimatedDeliveryDays.minimum", "shipping.estimatedDeliveryDays.maximum"]].to_markdown())
+ax2.set_title("Función cuadrática $y=x^2$")
+ax2.set_xlabel("Eje X")
+ax2.set_ylabel("Eje Y")
+ax2.set_xlim(-10,10)
+ax2.set_ylim(0,10)
+ax2.legend()
+ax2.grid(True)
 
-import pandas, numpy
+categorias = ["Suma", "Resta", "Multiplicacion"]
+conteos = [20, 22, 89]
 
-alumnos = [
-    {
-        "nombre": "Roberto",
-        "matricula": 1,
-        "materia": {
-            "nombre": "español",
-            "calificacion": 1
-        }
-    },
-    {
-        "nombre": "Andrea",
-        "matricula": 2,
-        "materia": {
-            "nombre": "matematicas",
-            "calificacion": 10
-        }
-    },
-    {
-        "nombre": "Claudia",
-        "matricula": 3,
-        "materia": {
-            "nombre": "ciencias",
-            "calificacion": 8
-        }
-    },
-    {
-        "nombre": "Paulina",
-        "matricula": 4,
-        "materia": {
-            "nombre": "religion",
-            "calificacion": 7
-        }
-    },
-    {
-        "nombre": "Sergio",
-        "matricula": 5,
-        "materia": {
-            "nombre": "programacion",
-            "calificacion": 10
-        }
-    },
-]
-
-#calificaciones = [alumno["calificacion"] for alumno in alumnos]
-
-# promedio = statistics.mean(calificaciones)
-# mediana = statistics.median(calificaciones)
-# moda = statistics.mode(calificaciones)
-
-# print("*** ESTADISTICA ***")
-# print(f"Calificaciones {",".join([str(c) for c in calificaciones])}.")
-# print(f"Promedio: {promedio}")
-# print(f"Mediana: {mediana}")
-# print(f"Moda: {moda}")
-
-#df = pandas.DataFrame(calificaciones, columns=["calificacion"])
-
-df = pandas.json_normalize(alumnos)
-
-print(df)
-print(df.describe())
-
-#df = df.astype('float32')
-
-# print(f"Promedio: {df['calificacion'].mean()}")
-# print(f"Mediana: {df['calificacion'].median()}")
-# print(f"Moda: {df['calificacion'].mode()[0]}")
-# print(f"StdDev: {df['calificacion'].std()}")
-# print(f"Varianza: {df['calificacion'].var()}")
-# print(f"Minimo: {df['calificacion'].min()}")
-# print(f"Maximo: {df['calificacion'].max()}")
-
-# print(df['calificacion'].describe().astype('float32'))
+ax3.pie(conteos, labels=categorias, autopct="%1.1f%%")
+ax2.set_title("Grafica de barras")
+ax2.set_xlabel("Eje X")
+ax2.set_ylabel("Eje Y")
+ax2.legend()
+ax2.grid(True)
 
 
-x = 1234567890123456789012345678901234567890123456789012345678901234567890123456789.234567890123456789
-df = pandas.DataFrame({
-    'float64': numpy.array([x], dtype='float64'),
-    'float32': numpy.array([x], dtype='float32')
-})
-
-print(df.to_string(float_format=lambda x: f"{x:.17f}"))
-
-for dtype in [numpy.float32, numpy.float64]:
-    info = numpy.finfo(dtype)
-    print(dtype.__name__)
-    print(info.bits)
-    print(info.tiny)
-    print(info.max)
+plt.tight_layout()
+plt.savefig("grafica.png")

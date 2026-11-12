@@ -2,6 +2,7 @@ from matematicas.aritmetica import operaciones as aritmetica_operaciones, divisi
 from matematicas.estadistica import operaciones as estadistica_operaciones, promedio, mediana, moda
 from es.entrada import recibir_opcion, recibir_entrada, recibir_lenguaje_natural
 from es.salida import producir_archivo
+from matematicas.graficas import graficar_historial
 
 if __name__ == "__main__":
     print(f"{"*" * 6} MENU {"*" * 6}")
@@ -33,6 +34,8 @@ if __name__ == "__main__":
             print([h["Resultado"] for h in historial])
 
             print(f"#=> {resultado}")
+
+            graficar_historial(historial)
 
             producir_archivo("historial.csv", historial)
         finally:

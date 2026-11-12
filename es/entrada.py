@@ -22,7 +22,7 @@ def validar_opcion(entrada, opciones):
 
 def recibir_opcion(texto, opciones):
     entrada = input(texto)
-    validar_opcion(entrada, opciones)
+    return validar_opcion(entrada, opciones)
 
 def recibir_ruta(texto):
     entrada = input(texto)

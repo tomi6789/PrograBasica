@@ -1,6 +1,7 @@
-from aritmetica import operaciones, division, multiplicacion, resta, suma
+from matematicas.aritmetica import operaciones, division, multiplicacion, resta, suma
 from es.entrada import recibir_opcion, recibir_entrada
 from es.salida import producir_archivo
+from matematicas.graficas import graficar_historial
 
 if __name__ == "__main__":
     print(f"{"*" * 6} MENU {"*" * 6}")
@@ -32,6 +33,8 @@ if __name__ == "__main__":
                 "A": a,
                 "B": b
             })
+
+            graficar_historial(historial)
 
             producir_archivo("historial.csv", historial)
         except KeyError:
